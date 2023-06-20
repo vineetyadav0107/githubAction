@@ -23,9 +23,10 @@ jobs:
         cache: 'npm'
     - run: npm install
     - run: npm run build --prod
+    - run: cd dist
     - run: ls
     
-    - uses: actions/checkout@v3
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag angular:$(date +%s)
-    - run: docker images
+#     - uses: actions/checkout@v3
+#     - name: Build the Docker image
+#       run: docker build . --file Dockerfile --tag angular:$(date +%s)
+#     - run: docker images
