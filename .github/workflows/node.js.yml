@@ -23,8 +23,7 @@ jobs:
         cache: 'npm'
     - run: npm install
     - run: npm run build --prod
-    - run: cd dist
-    - run: ls
+    - run: ls dist/
     
 #     - uses: actions/checkout@v3
 #     - name: Build the Docker image
