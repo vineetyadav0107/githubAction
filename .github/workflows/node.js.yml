@@ -49,5 +49,5 @@ jobs:
         echo $ECR_REPOSITORY
         echo $IMAGE_TAG
         docker build -t angular .
-        docker tag angular:latest 012820943770.dkr.ecr.eu-north-1.amazonaws.com/githubaction:$IMAGE_TAG
-        docker push 012820943770.dkr.ecr.eu-north-1.amazonaws.com/githubaction:$IMAGE_TAG
+        docker tag angular:latest $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
