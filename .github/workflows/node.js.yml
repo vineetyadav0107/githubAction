@@ -68,3 +68,4 @@ jobs:
     - name: deploy to cluster
       run: |
         kubectl config current-context
+        kubectl get all
