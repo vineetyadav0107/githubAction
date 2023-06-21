@@ -53,7 +53,7 @@ jobs:
       
     - uses: cschleiden/replace-tokens@v1
       with:
-        files: '[kubernetes/*.yml]'
+        files: '["kubernetes/*.yml"]'
         tokenPrefix: __
         tokenSuffix: __
       env:
