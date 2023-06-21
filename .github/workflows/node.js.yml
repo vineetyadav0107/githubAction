@@ -65,4 +65,4 @@ jobs:
 
     - name: deploy to cluster
       run: |
-        kubectl apply -f kubernetes/deployment.yml
+        kubectl get all
