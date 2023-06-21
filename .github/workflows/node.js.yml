@@ -61,8 +61,9 @@ jobs:
     #     IMAGE_TAG: $IMAGE_TAG
       
     - name: Update kube config
-      run: aws eks update-kubeconfig --name poc --region eu-north-1
-      run: kubectl config current-context
+      run: | 
+      aws eks update-kubeconfig --name poc --region eu-north-1
+      kubectl config current-context
 
     - name: deploy to cluster
       run: |
