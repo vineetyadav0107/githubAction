@@ -35,10 +35,14 @@ jobs:
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
     
+    - name: setting Tag
+      id: date
+      run: "::set-output name=date::$(date +%s)"
     - name: Build, tag, and push image to Amazon ECR
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: githubaction
+        IMAGE_TAG: ${{ steps.date.outputs.date }}
       run: |
-        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$(date +%s) .
-        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$(date +%s)
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY:IMAGE_TAG
