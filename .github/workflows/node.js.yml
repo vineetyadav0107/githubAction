@@ -38,15 +38,27 @@ jobs:
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
       
-    - name: Build, tag, and push image to Amazon ECR
-      env:
-        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        ECR_REPOSITORY: githubaction
-        IMAGE_TAG: ${{ steps.date.outputs.date }}
-      run: |
-        echo $ECR_REGISTRY
-        echo $ECR_REPOSITORY
-        echo $IMAGE_TAG
-        docker build -t angular .
-        docker tag angular:latest $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+    # - name: Build, tag, and push image to Amazon ECR
+    #   env:
+    #     ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+    #     ECR_REPOSITORY: githubaction
+    #     IMAGE_TAG: ${{ steps.date.outputs.date }}
+    #   run: |
+    #     echo $ECR_REGISTRY
+    #     echo $ECR_REPOSITORY
+    #     echo $IMAGE_TAG
+    #     docker build -t angular .
+    #     docker tag angular:latest $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+    #     docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+      
+    #   uses: cschleiden/replace-tokens@v1
+    #   with:
+    #     files: '[kubernetes/*.yml]'
+    #     tokenPrefix: __
+    #     tokenSuffix: __
+    #   env:
+    #     DOCKER_REPOSITORY: $ECR_REGISTRY/$ECR_REPOSITORY
+    #     IMAGE_TAG: $IMAGE_TAG
+      
+    - name: Update kube config
+      run: aws eks update-kubeconfig --name poc --region eu-north-1
