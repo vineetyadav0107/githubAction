@@ -62,8 +62,8 @@ jobs:
       
     - name: Update kube config
       run: | 
-      aws eks update-kubeconfig --name poc --region eu-north-1
-      kubectl config current-context
+        aws eks update-kubeconfig --name poc --region eu-north-1
+        kubectl config current-context
 
     - name: deploy to cluster
       run: |
